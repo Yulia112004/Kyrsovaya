@@ -1,0 +1,16 @@
+[
+ {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields":
+    {
+      "product_name": "молоко",
+      "product_disc": "1 литр",
+      "image": "products/milk.jpg",
+      "category": 1,
+      "price": 70,
+      "data_created": "2024-01-15T10:00:18Z",
+      "data_changed": "2024-01-15T10:00:33Z"
+    }
+  }
+]

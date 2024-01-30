@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">{{ title }}</h1>
+</div>
+    <div class="row text-center">
+    <div class="center">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <img src="{{ product.image|media_url }}" alt="" style="max-width: 75%;">
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">{{ product.product_name }}</h1>
+                <p>Цена: {{ product.price }} руб.</p>
+                <p>Описание: {{ product.short_des  }} </p>
+                <p>Категория: {{ product.category }} </p>
+                <p>Дата создания: {{ product.data_created }} </p>
+                <p>Дата изменения: {{ product.data_changed }} </p>
+                 {% for version in product.version_set.all %}
+                    {% if version.is_active %}
+                  <p>Текущая версия: {{ version.version_number }}</p>
+                    {% endif %}
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

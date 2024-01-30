@@ -1,0 +1,15 @@
+ <nav class="ms-5 d-flex">
+     <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:index' %}">Каталог</a>
+     <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:contacts' %}">Контакты</a>
+     <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:create_product' %}">Создать продукт</a>
+     {% if user.is_authenticated %}
+         <a href="{% url 'users:profile' %}" class="p-2 btn btn-outline-primary">Профиль</a>
+         <form action="{% url 'users:logout' %}" method="post">
+             {% csrf_token %}
+             <button class="p-2 btn btn-outline-primary" type="submit">Выйти</button>
+         </form>
+     {% else %}
+        <a href="{% url 'users:login' %}" class="p-2 btn btn-outline-primary">Войти</a>
+        <a href="{% url 'users:register' %}" class="p-2 btn btn-outline-primary">Регистрация</a>
+     {% endif %}
+ </nav>

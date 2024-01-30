@@ -1,0 +1,55 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">{{ title }}</h1>
+</div>
+<div class="row text-start">
+    <div class="col-lg-9 col-md-6 col-sm-12">
+        <div class="card mb-4 box-shadow">
+            <div class="card-body">
+                {% for address in adress_info %}
+                <table class="table table-striped">
+                    <tr>
+                        <td class="w-25">Страна</td>
+                        <td>{{ address.country }}</td>
+                    </tr>
+                    <tr>
+                        <td class="w-25">ИНН</td>
+                        <td>{{ address.inn }}</td>
+                    </tr>
+                    <tr>
+                        <td class="w-25">Адрес</td>
+                        <td>{{ address.address }}</td>
+                    </tr>
+                </table>
+                {% endfor%}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Свяжитесь с нами</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                     {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="country">Страна</label>
+                        <input type="text" name="country" class="form-control" id="country" placeholder="Страна" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inn">ИНН</label>
+                        <input type="number" name="inn" class="form-control" id="inn" placeholder="ИНН" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address">Адрес</label>
+                        <input type="text" name="address" class="form-control" id="address" placeholder="Адрес" required></input>
+                    </div>
+                    <input value="Отправить" type="submit" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

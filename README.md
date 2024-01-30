@@ -1,1 +1,0 @@
-# vetki_project

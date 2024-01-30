@@ -1,0 +1,38 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields":
+    {
+      "category_name": "Молочные",
+      "disc": "Молочные продукты (молоко, творог, кефир)"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields":
+    {
+      "category_name": "Мясные",
+      "disc": "Мясные товары"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields":
+    {
+      "category_name": "Фрукты",
+      "disc": "Яблоки, апельсины, грушы"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields":
+    {
+      "category_name": "Овощи",
+      "disc": "Овощные продукты"
+    }
+  }
+]

@@ -1,0 +1,45 @@
+{% extends 'blog/base.html' %}
+
+{% load my_tags %}
+
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Все блоги</h1>
+</div>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        {% for object in object_list %}
+        <div class="col">
+            <div class="card shadow-sm">
+                <br>
+                <p class="text-center fw-bold">{{ object }}</p>
+                <div class="card-body">
+                    <img alt="Фото" style="width: 75%" src="{% mediafile object.preview %} "/>
+                    <p class="card-text">{{ object.body|truncatechars:300 }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="{% url 'blog:detail' object.slug %}" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                            <a href="{% url 'blog:edit' object.slug %}" class="btn btn-sm btn-outline-secondary">Редактировать</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="pages" align="center">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page.obj.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+        <span class="current">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+        {% endif %}
+    </div>
+    {% endblock %}
