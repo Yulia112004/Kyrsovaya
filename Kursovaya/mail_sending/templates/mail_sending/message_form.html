@@ -1,0 +1,41 @@
+{% extends 'mail_sending/base.html' %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+
+    <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm border-dark">
+                    <div class="card-header py-3 text-bg-secondary border-dark">
+                        {% if object %}
+                            Редактировать
+                        {% else %}
+                            Добавить
+                        {% endif %}
+
+                    </div>
+
+                    <div class="card-body">
+
+                            {% csrf_token %}
+                            {{ form.as_p }}
+
+                            <button type="submit" class="btn btn-outline-success">
+                                {% if object %}
+                                    Сохранить
+                                {% else %}
+                                    Добавить
+                                {% endif %}
+                            </button>
+
+                        <a href="{% url 'mail_sending:message_index' %}" type="button" class="btn btn-sm btn-outline-secondary btn-lg float-end">Назад</a>
+
+                    </div>
+                </div>
+            </div>
+
+</form>
+
+
+
+{% endblock %}

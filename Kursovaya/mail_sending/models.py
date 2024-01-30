@@ -1,6 +1,7 @@
 from django.utils import timezone
 from django.db import models
 from client.models import Client
+from users.models import User
 
 # Create your models here.
 # Constants
@@ -30,6 +31,7 @@ class Message(models.Model):
     '''Сообщение для рассылки'''
     title = models.CharField(max_length=100, verbose_name='Тема письма')
     text = models.TextField(verbose_name='Тело письма')
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Владелец')
 
     def __str__(self):
         return self.title
@@ -51,6 +53,7 @@ class Mailing(models.Model):
     period_mail = models.CharField(max_length=50, verbose_name='Период рассылки', choices=PERIOD_MAIL)
     status_mail = models.CharField(max_length=50, default='created', verbose_name='Статус рассылки',
                                    choices=STATUS_MAIL)
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Владелец')
 
     def __str__(self):
         return self.title
@@ -67,6 +70,7 @@ class Log(models.Model):
     datetime_attempt = models.DateTimeField(default=timezone.now, verbose_name='Дата последней попытки')
     status_attempt = models.CharField(choices=STATUS_LOG, max_length=50, verbose_name='Статус попытки')
     answer_server = models.TextField(**NULLABLE, verbose_name='Ответ сервера')
+    message = models.ForeignKey(Message, on_delete=models.CASCADE, **NULLABLE, verbose_name='Сообщение')
 
     def __str__(self):
         return f"Время рассылки: {self.datetime_attempt}"

@@ -6,9 +6,11 @@
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="fw-light">Клиенты</h1><br>
+                {% if perms.client.add_client %}
                 <p>
                     <a class="btn btn-outline-dark btn-lg" href="{% url 'client:client_create' %}">Создать клиента</a>
                 </p>
+                {% endif %}
             </div>
         </div>
     </section>
@@ -35,11 +37,14 @@
                         <a href="{% url 'client:client_detail' object.pk %}" type="button" class="btn btn-sm btn-outline-secondary btn-lg">Подробнее</a>
                         <hr>
 
-                        <div class="btn-group">
+                       <div class="btn-group">
+                            {% if perms.client.change_client %}
                             <a href="{% url 'client:client_update' object.pk %}" class="btn btn-outline-success">Edit</a>
+                            {% endif %}
+                            {% if perms.client.delete_client %}
                             <a href="{% url 'client:client_delete' object.pk %}" class="btn btn-outline-danger">Delete</a>
+                            {% endif %}
                         </div>
-
 
 
                     </div>

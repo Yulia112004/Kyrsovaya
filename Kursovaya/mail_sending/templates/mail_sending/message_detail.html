@@ -1,0 +1,37 @@
+{% extends 'mail_sending/base.html' %}
+
+{% block content %}
+
+<div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm border-dark">
+
+                    <div class="card-header py-3 text-bg-secondary border-dark">
+                        <h4 class="my-0 fw-normal text-center">{{ object.title|title }}</h4>
+                    </div>
+
+                    <div class="card-body">
+
+                        <p class="card-text">Название: {{ object.title }}</p>
+                        <p class="card-text">Содержание: {{ object.text }}</p>
+
+
+                        <hr>
+
+                      <div class="btn-group">
+                            {% if perms.mail_sending.change_message %}
+                            <a href="{% url 'mail_sending:message_update' object.pk %}" class="btn btn-outline-success">Edit</a>
+                            {% endif %}
+                            {% if perms.mail_sending.delete_message %}
+                            <a href="{% url 'mail_sending:message_delete' object.pk %}" class="btn btn-outline-danger">Delete</a>
+                            {% endif %}
+                        </div>
+
+                        <a href="{% url 'mail_sending:message_index' %}" type="button" class="btn btn-sm btn-outline-secondary btn-lg float-end">Назад</a>
+
+                    </div>
+                </div>
+
+
+</div>
+
+{% endblock %}

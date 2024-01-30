@@ -1,0 +1,18 @@
+[
+{
+  "model": "mail_sending.message",
+  "pk": 1,
+  "fields": {
+    "title": "Samsung",
+    "text": "Распродажа телефонов Samsung"
+  }
+},
+{
+  "model": "mail_sending.message",
+  "pk": 2,
+  "fields": {
+    "title": "Apple",
+    "text": "Айфоны недорого"
+  }
+}
+]

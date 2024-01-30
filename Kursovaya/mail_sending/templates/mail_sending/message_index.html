@@ -5,10 +5,10 @@
 <section class="py-5 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Рассылки</h1><br>
-                {% if perms.mail_sending.add_mailing %}
+                <h1 class="fw-light">Сообщения</h1><br>
+               {% if perms.mail_sending.add_message %}
                 <p>
-                    <a class="btn btn-outline-dark btn-lg" href="{% url 'mail_sending:mail_sending_create' %}">Создать рассылку</a>
+                    <a class="btn btn-outline-dark btn-lg" href="{% url 'mail_sending:message_create' %}">Создать сообщение</a>
                 </p>
                 {% endif %}
             </div>
@@ -30,18 +30,18 @@
                     </div>
 
                     <div class="card-body">
+                        <p>Название: {{ object.title }}</p>
+                        <p>Содержание: {{ object.text|truncatechars:100 }}</p>
 
-                        <p>Статус рассылки: {{ object.status_mail }}</p>
-
-                        <a href="{% url 'mail_sending:mail_sending_detail' object.pk %}" type="button" class="btn btn-sm btn-outline-secondary btn-lg">Подробнее</a>
+                        <a href="{% url 'mail_sending:message_detail' object.pk %}" type="button" class="btn btn-sm btn-outline-secondary btn-lg">Подробнее</a>
                         <hr>
 
-                        <div class="btn-group">
-                            {% if perms.mail_sending.change_mailing %}
-                            <a href="{% url 'mail_sending:mail_sending_update' object.pk %}" class="btn btn-outline-success">Edit</a>
+                         <div class="btn-group">
+                            {% if perms.mail_sending.change_message %}
+                            <a href="{% url 'mail_sending:message_update' object.pk %}" class="btn btn-outline-success">Edit</a>
                             {% endif %}
-                            {% if perms.mail_sending.delete_mailing %}
-                            <a href="{% url 'mail_sending:mail_sending_delete' object.pk %}" class="btn btn-outline-danger">Delete</a>
+                            {% if perms.mail_sending.delete_message %}
+                            <a href="{% url 'mail_sending:message_delete' object.pk %}" class="btn btn-outline-danger">Delete</a>
                             {% endif %}
                         </div>
 
@@ -58,10 +58,6 @@
             </div>
         </div>
     </div>
-
-
-
-
 
 
 {% endblock %}

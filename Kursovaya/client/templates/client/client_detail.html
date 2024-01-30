@@ -14,15 +14,19 @@
                         <p class="card-text">ФИО: {{ object.name }}</p>
                         <p class="card-text">Почта: {{ object.email }}</p>
                         <p class="card-text">Комментарий: {{ object.comment }}</p>
-                        <p class="card-text">Юзер: </p>
 
 
                         <hr>
 
                         <div class="btn-group">
+                            {% if perms.client.change_client %}
                             <a href="{% url 'client:client_update' object.pk %}" class="btn btn-outline-success">Edit</a>
+                            {% endif %}
+                            {% if perms.client.delete_client %}
                             <a href="{% url 'client:client_delete' object.pk %}" class="btn btn-outline-danger">Delete</a>
+                            {% endif %}
                         </div>
+
 
                         <a href="{% url 'client:client_index' %}" type="button" class="btn btn-sm btn-outline-secondary btn-lg float-end">Назад</a>
 

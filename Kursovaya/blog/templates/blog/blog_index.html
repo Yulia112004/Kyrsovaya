@@ -6,9 +6,11 @@
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="fw-light">Блог</h1><br>
+              {% if perms.blog.add_blog %}
                 <p>
                     <a class="btn btn-outline-dark btn-lg" href="{% url 'blog:blog_create' %}">Создать пост</a>
                 </p>
+                {% endif %}
             </div>
         </div>
     </section>
@@ -38,9 +40,13 @@
                         <a href="{% url 'blog:blog_detail' object.pk %}" type="button" class="btn btn-sm btn-outline-secondary btn-lg">Подробнее</a>
                         <hr>
 
-                        <div class="btn-group">
+                       <div class="btn-group">
+                            {% if perms.blog.change_blog %}
                             <a href="{% url 'blog:blog_update' object.pk %}" class="btn btn-outline-success">Edit</a>
+                            {% endif %}
+                            {% if perms.blog.delete_blog %}
                             <a href="{% url 'blog:blog_delete' object.pk %}" class="btn btn-outline-danger">Delete</a>
+                            {% endif %}
                         </div>
 
 

@@ -20,9 +20,13 @@
 
                         <hr>
 
-                        <div class="btn-group">
+                       <div class="btn-group">
+                            {% if perms.blog.change_blog %}
                             <a href="{% url 'blog:blog_update' object.pk %}" class="btn btn-outline-success">Edit</a>
+                            {% endif %}
+                            {% if perms.blog.delete_blog %}
                             <a href="{% url 'blog:blog_delete' object.pk %}" class="btn btn-outline-danger">Delete</a>
+                            {% endif %}
                         </div>
 
                         <a href="{% url 'blog:blog_index' %}" type="button" class="btn btn-sm btn-outline-secondary btn-lg float-end">Назад</a>

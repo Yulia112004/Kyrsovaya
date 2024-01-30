@@ -11,19 +11,22 @@
 
                     <div class="card-body">
 
-                        <p class="card-text">Клиент: client</p>
-                        <p class="card-text">Сообщение: message</p>
                         <p class="card-text">Время рассылки: {{ object.time_mail }}</p>
                         <p class="card-text">Период рассылки: {{ object.period_mail }} </p>
-                        <p class="card-text">Статус рассылки: status_mail</p>
+                        <p class="card-text">Статус рассылки: {{ object.status_mail }}</p>
 
 
                         <hr>
 
-                        <div class="btn-group">
+                       <div class="btn-group">
+                            {% if perms.mail_sending.change_mailing %}
                             <a href="{% url 'mail_sending:mail_sending_update' object.pk %}" class="btn btn-outline-success">Edit</a>
+                            {% endif %}
+                            {% if perms.mail_sending.delete_mailing %}
                             <a href="{% url 'mail_sending:mail_sending_delete' object.pk %}" class="btn btn-outline-danger">Delete</a>
+                            {% endif %}
                         </div>
+
 
                         <a href="{% url 'mail_sending:mail_sending_index' %}" type="button" class="btn btn-sm btn-outline-secondary btn-lg float-end">Назад</a>
 

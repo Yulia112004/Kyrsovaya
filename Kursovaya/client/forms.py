@@ -16,4 +16,4 @@ class ClientForm(StyleFormMixin, forms.ModelForm):
 
     class Meta:
         model = Client
-        fields = ('email', 'name', 'comment',)
+        fields = ('email', 'name', 'comment', 'owner',)

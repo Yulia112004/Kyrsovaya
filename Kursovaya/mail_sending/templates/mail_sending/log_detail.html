@@ -1,0 +1,30 @@
+{% extends 'mail_sending/base.html' %}
+
+{% block content %}
+
+<div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm border-dark">
+
+                    <div class="card-header py-3 text-bg-secondary border-dark">
+                        <h4 class="my-0 fw-normal text-center">{{ object.datetime_attempt|title }}</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <p class="card-text">Сообщение: {{ object.message }}</p>
+                        <p class="card-text">Дата: {{ object.datetime_attempt }}</p>
+                        <p class="card-text">Статус: {{ object.status_attempt }}</p>
+                        <p class="card-text">Ответ: {{ object.answer_server }}</p>
+
+
+                        <hr>
+
+
+                        <a href="{% url 'mail_sending:log_index' %}" type="button" class="btn btn-sm btn-outline-secondary btn-lg float-end">Назад</a>
+
+                    </div>
+                </div>
+
+
+</div>
+
+{% endblock %}
