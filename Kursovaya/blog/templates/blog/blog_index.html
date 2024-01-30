@@ -1,0 +1,65 @@
+{% extends 'mail_sending/base.html' %}
+
+{% block content %}
+
+<section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Блог</h1><br>
+                <p>
+                    <a class="btn btn-outline-dark btn-lg" href="{% url 'blog:blog_create' %}">Создать пост</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 justify-content-center">
+                {% for object in object_list %}
+
+
+                <div class="col-md-5">
+                <div class="card mb-4 rounded-3 shadow-sm border-dark">
+
+                    <div class="card-header py-3 text-bg-secondary border-dark text-center">
+                        <h4 class="my-0 fw-normal">{{ object.title|title }}</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <img src="/media/{{ object.image }}" height="100%" width="100%"/>
+                        <p>{{ object.content|truncatechars:100 }}</p>
+
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>- Создан: {{ object.data_create }}</li>
+                            <li>- Просмотров: {{ object.views_count }}</li>
+                            </ul>
+                        <a href="{% url 'blog:blog_detail' object.pk %}" type="button" class="btn btn-sm btn-outline-secondary btn-lg">Подробнее</a>
+                        <hr>
+
+                        <div class="btn-group">
+                            <a href="{% url 'blog:blog_update' object.pk %}" class="btn btn-outline-success">Edit</a>
+                            <a href="{% url 'blog:blog_delete' object.pk %}" class="btn btn-outline-danger">Delete</a>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}

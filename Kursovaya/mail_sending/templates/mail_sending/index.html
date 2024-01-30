@@ -1,7 +1,70 @@
 {% extends 'mail_sending/base.html' %}
 
 {% block content %}
+<div class="row justify-content-center">
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-sm-4">
+                <h5 class="card-title text-muted text-center font-weight-bold">Всего рассылок</h5>
+                <p class="text-center">{{ total_mailings }}</p>
+            </div>
+            <div class="col-sm-4">
+                <h5 class="card-title text-muted text-center font-weight-bold">Активные рассылки</h5>
+                <p class="text-center">{{ active_mailings }}</p>
+            </div>
+            <div class="col-sm-4">
+                <h5 class="card-title text-muted text-center font-weight-bold">Уникальные клиенты</h5>
+                <p class="text-center">{{ unique_clients }}</p>
+            </div>
+        </div>
+    </div>
 
+    <div class="album py-5 bg-light">
+    <div class="container">
+  <h5 class="card-title text-muted text-center font-weight-bold">Блог посты</h5>
+        <br>
+        <br>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 justify-content-center">
+        {% for object in posts %}
+
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm border-dark">
+
+                    <div class="card-header py-3 text-bg-secondary border-dark">
+                        <h4 class="my-0 fw-normal text-center">{{ object.title|title }}</h4>
+                    </div>
+
+                    <div class="card-body">
+
+                        <img src="/media/{{ object.image }}" height="100%" width="100%"/>
+                        <p class="card-text">Описание: {{ object.content }}</p>
+                        <p class="card-text">Дата создания: {{ object.data_create }}</p>
+                        <p class="card-text">Дата редактирования: {{ object.is_published}}</p>
+                        <p class="card-text">Количество просмотров: {{ object.views_count}}</p>
+
+                        <hr>
+
+                        <div class="btn-group">
+                            <a href="{% url 'blog:blog_update' object.pk %}" class="btn btn-outline-success">Edit</a>
+                            <a href="{% url 'blog:blog_delete' object.pk %}" class="btn btn-outline-danger">Delete</a>
+                        </div>
+
+                        <a href="{% url 'blog:blog_index' %}" type="button" class="btn btn-sm btn-outline-secondary btn-lg float-end">Блог</a>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+               {% endfor %}
+
+    </div>
+    </div>
+    </div>
+
+</div>
 
 
 
